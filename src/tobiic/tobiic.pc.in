@@ -4,7 +4,7 @@ libdir=@libdir@
 includedir=@includedir@
 
 Name: libtobiic
-Description: TOBI InterfaceC library
+Description: TOBI Interface C library
 Version: @PACKAGE_VERSION@
 Libs: -L${libdir} -ltobiic
 Cflags: -I${includedir}/tobiic

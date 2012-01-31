@@ -3,8 +3,8 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: libtobiic
-Description: TOBI InterfaceC library
+Name: libtobiid
+Description: TOBI Interface C library
 Version: @PACKAGE_VERSION@
-Libs: -L${libdir} -ltobiic
+Libs: -L${libdir} -ltobiid
 Cflags: -I${includedir}/tobiic
