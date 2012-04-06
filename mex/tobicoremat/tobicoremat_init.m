@@ -14,3 +14,4 @@
 mtpath_include([basepath '/mextobicore']);
 mtpath_include([basepath '/mextobiic']);
 mtpath_include([basepath '/mextobiid']);
+mtpath_include([basepath '/mextobiplatform']);
