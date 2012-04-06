@@ -20,6 +20,7 @@ $ #include <tobicore/TCTimestamp.hpp>
 $ #include <cstring>
 $ #include <stdio.h>
 $ #include <string.h>
+$ #include <mex.h>
 
 @function tcblock_absolutetic(q)
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)

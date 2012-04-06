@@ -19,6 +19,7 @@ $ #include <tobicore/TCException.hpp>
 $ #include <tobiic/ICMessage.hpp>
 $ #include <tobiic/ICSerializerRapid.hpp>
 $ #include <cstring>
+$ #include <mex.h>
 
 @function [q] = icserializerrapid_new(m);
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
@@ -93,7 +94,7 @@ $ #include <cstring>
 	$ 		ICClassifier* c = new ICClassifier(*name, *desc, *vtype, *ltype);
 	$ 		q->classifiers.Add(c);
 	$	} catch(TCException e) {
-	$		printf("[icmessage_addclassifier] Exception in libtobiic: %s, %s\n",
+	$		mexPrintf("[icmessage_addclassifier] Exception in libtobiic: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$		return false;
 	$	}
@@ -116,7 +117,7 @@ $ #include <cstring>
 	$	try {
 	$ 	  q->Dump();
 	$	} catch(TCException e) {
-	$		printf("[icmessage_dumpmessage] Exception in libtobiic: %s, %s\n",
+	$		mexPrintf("[icmessage_dumpmessage] Exception in libtobiic: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$		return false;
 	$	}
@@ -144,7 +145,7 @@ $ #include <cstring>
 	$		ICClass* k = new ICClass(*label, *value);
 	$		c->classes.Add(k);
 	$	} catch(TCException e) {
-	$		printf("[icmessage_addclass] Exception in libtobiic: %s, %s\n",
+	$		mexPrintf("[icmessage_addclass] Exception in libtobiic: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$		return false;
 	$	}
@@ -171,7 +172,7 @@ $ #include <cstring>
 	$	try {
 	$ 		(*value) = q->classifiers.Get(*name)->classes.Get(*label)->GetValue();
 	$	} catch(TCException e) {
-	$		printf("[icmessage_getvalue] Exception in libtobiic: %s, %s\n",
+	$		mexPrintf("[icmessage_getvalue] Exception in libtobiic: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$	}
 	$ }
@@ -197,7 +198,7 @@ $ #include <cstring>
 	$ 	try {
 	$ 		q->classifiers.Get(*name)->classes.Get(*label)->SetValue(*value);
 	$	} catch(TCException e) {
-	$		printf("[icmessage_setvalue] Exception in libtobiic: %s, %s\n",
+	$		mexPrintf("[icmessage_setvalue] Exception in libtobiic: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$		return false;
 	$	}
@@ -222,7 +223,7 @@ $ #include <cstring>
 	$ 	try {
 	$ 		s->SerializeCh(buffer, 4096);
 	$	} catch(TCException e) {
-	$		printf("[icmessage_serialize] Exception in libtobiic: %s, %s\n",
+	$		mexPrintf("[icmessage_serialize] Exception in libtobiic: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$	}
 	$ } 
@@ -245,7 +246,7 @@ $ #include <cstring>
 	$ 	try {
 	$ 		s->DeserializeCh(buffer, 4096);
 	$	} catch(TCException e) {
-	$		printf("[icmessage_deserialize] Exception in libtobiic: %s, %s\n",
+	$		mexPrintf("[icmessage_deserialize] Exception in libtobiic: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$		return false;
 	$	}

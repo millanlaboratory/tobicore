@@ -20,7 +20,7 @@ $ #include <tobiid/IDSerializerRapid.hpp>
 $ #include <tobiid/IDAsClient.hpp>
 $ #include <cstring>
 $ #include <stdio.h>
-$ #include <string.h>
+$ #include <mex.h>
 
 @function [c] = idasclient_new();
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
@@ -171,7 +171,7 @@ $ #include <string.h>
 	$ 	try {
 	$ 		s->SerializeCh(buffer, 4096);
 	$	} catch(TCException e) {
-	$		printf("[idmessage_serialize] Exception in libtobiic: %s, %s\n",
+	$		mexPrintf("[idmessage_serialize] Exception in libtobiic: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$	}
 	$ } 
@@ -194,7 +194,7 @@ $ #include <string.h>
 	$ 	try {
 	$ 		s->DeserializeCh(buffer, 4096);
 	$	} catch(TCException e) {
-	$		printf("[idmessage_deserialize] Exception in libtobiic: %s, %s\n",
+	$		mexPrintf("[idmessage_deserialize] Exception in libtobiic: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$		return false;
 	$	}
@@ -215,7 +215,7 @@ $ #include <string.h>
 	$	try {
 	$ 	  q->Dump();
 	$	} catch(TCException e) {
-	$		printf("[idmessage_dumpmessage] Exception in libtobiid: %s, %s\n",
+	$		mexPrintf("[idmessage_dumpmessage] Exception in libtobiid: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$	}
 	$ }
@@ -235,7 +235,7 @@ $ #include <string.h>
 	$	try {
 	$ 	  q->Copy(other);
 	$	} catch(TCException e) {
-	$		printf("[idmessage_copy] Exception in libtobiid: %s, %s\n",
+	$		mexPrintf("[idmessage_copy] Exception in libtobiid: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$		return false;
 	$	}
@@ -258,7 +258,7 @@ $ #include <string.h>
 	$ 	  std::string cache(desc);
 	$	  q->SetDescription(cache);
 	$	} catch(TCException e) {
-	$		printf("[idmessage_setdescription] Exception in libtobiid: %s, %s\n",
+	$		mexPrintf("[idmessage_setdescription] Exception in libtobiid: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$	}
 	$ }
@@ -279,7 +279,7 @@ $ #include <string.h>
 	$ 	  std::string cache = q->GetDescription();
 	$	  strcpy(desc, cache.c_str());
 	$	} catch(TCException e) {
-	$		printf("[idmessage_getdescription] Exception in libtobiid: %s, %s\n",
+	$		mexPrintf("[idmessage_getdescription] Exception in libtobiid: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$	}
 	$ }
@@ -301,7 +301,7 @@ $ #include <string.h>
 	$ 	  std::string cache = q->GetFamily();
 	$	  strcpy(family, cache.c_str());
 	$	} catch(TCException e) {
-	$		printf("[idmessage_getfamily] Exception in libtobiid: %s, %s\n",
+	$		mexPrintf("[idmessage_getfamily] Exception in libtobiid: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$	}
 	$ }
@@ -322,7 +322,7 @@ $ #include <string.h>
 	$	try {
 	$	  q->SetFamilyType(type);
 	$	} catch(TCException e) {
-	$		printf("[idmessage_setfamilytype] Exception in libtobiid: %s, %s\n",
+	$		mexPrintf("[idmessage_setfamilytype] Exception in libtobiid: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$	}
 	$ }
@@ -342,7 +342,7 @@ $ #include <string.h>
 	$	try {
 	$ 	  return q->GetFamilyType();
 	$	} catch(TCException e) {
-	$		printf("[idmessage_getfamilytype] Exception in libtobiid: %s, %s\n",
+	$		mexPrintf("[idmessage_getfamilytype] Exception in libtobiid: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$		return IDMessage::FamilyUndef;
 	$	}
@@ -363,7 +363,7 @@ $ #include <string.h>
 	$	try {
 	$	  q->SetEvent(event);
 	$	} catch(TCException e) {
-	$		printf("[idmessage_setevent] Exception in libtobiid: %s, %s\n",
+	$		mexPrintf("[idmessage_setevent] Exception in libtobiid: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$	}
 	$ }
@@ -383,7 +383,7 @@ $ #include <string.h>
 	$	try {
 	$ 	  return q->GetEvent();
 	$	} catch(TCException e) {
-	$		printf("[idmessage_getevent] Exception in libtobiid: %s, %s\n",
+	$		mexPrintf("[idmessage_getevent] Exception in libtobiid: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$		return IDMessage::FamilyUndef;
 	$	}
@@ -417,7 +417,7 @@ $ #include <string.h>
 	$	try {
 	$ 	  c->Dump();
 	$	} catch(TCException e) {
-	$		printf("[idasclient_dump] Exception in libtobiid: %s, %s\n",
+	$		mexPrintf("[idasclient_dump] Exception in libtobiid: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$	}
 	$ }
@@ -437,7 +437,7 @@ $ #include <string.h>
 	$	try {
 	$ 	  return c->Size();
 	$	} catch(TCException e) {
-	$		printf("[idasclient_size] Exception in libtobiid: %s, %s\n",
+	$		mexPrintf("[idasclient_size] Exception in libtobiid: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$		return IDMessage::FamilyUndef;
 	$	}
@@ -463,7 +463,7 @@ $ #include <string.h>
 	$	  cache.Copy(q);
 	$ 	  c->Enqueue(cache);
 	$	} catch(TCException e) {
-	$		printf("[idasclient_size] Exception in libtobiid: %s, %s\n",
+	$		mexPrintf("[idasclient_size] Exception in libtobiid: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$	}
 	$ }
@@ -507,7 +507,7 @@ $ #include <string.h>
 	$	try {
 	$ 		return(c->Dequeue(q, type, event, IDAsClient::BlockPrev));
 	$	} catch(TCException e) {
-	$		printf("[idasclient_dequeueprev] Exception in libtobiid: %s, %s\n",
+	$		mexPrintf("[idasclient_dequeueprev] Exception in libtobiid: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$		return false;
 	$	}
@@ -557,7 +557,7 @@ $ #include <string.h>
 	$	try {
 	$ 		return(c->Dequeue(q, type, event, IDAsClient::BlockNext));
 	$	} catch(TCException e) {
-	$		printf("[idasclient_dequeuenext] Exception in libtobiid: %s, %s\n",
+	$		mexPrintf("[idasclient_dequeuenext] Exception in libtobiid: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$		return false;
 	$	}
@@ -607,7 +607,7 @@ $ #include <string.h>
 	$	try {
 	$ 		return(c->Dequeue(q, type, event, IDAsClient::BlockThis));
 	$	} catch(TCException e) {
-	$		printf("[idasclient_dequeuethis] Exception in libtobiid: %s, %s\n",
+	$		mexPrintf("[idasclient_dequeuethis] Exception in libtobiid: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$		return false;
 	$	}
