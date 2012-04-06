@@ -7,16 +7,12 @@ check_PROGRAMS = tptcpclient \
 				 tpidclient
 
 tptcpclient_SOURCES = tptcpclient.cpp
-tptcpclient_LDADD = $(top_builddir)/src/tobiplatform/libtobiplatform.la 
-
 tptcpserver_SOURCES = tptcpserver.cpp
-tptcpserver_LDADD = $(top_builddir)/src/tobiplatform/libtobiplatform.la 
-
 tpicclient_SOURCES = tpicclient.cpp
-tpicclient_LDADD = $(top_builddir)/src/tobiplatform/libtobiplatform.la
-
 tpicserver_SOURCES = tpicserver.cpp
-tpicserver_LDADD = $(top_builddir)/src/tobiplatform/libtobiplatform.la 
-
 tpidclient_SOURCES = tpidclient.cpp
-tpidclient_LDADD = $(top_builddir)/src/tobiplatform/libtobiplatform.la
+
+LDADD = $(top_builddir)/src/tobiplatform/libtobiplatform.la \
+		$(top_builddir)/src/tobicore/libtobicore.la \
+		$(top_builddir)/src/tobiic/libtobiic.la \
+		$(top_builddir)/src/tobiid/libtobiid.la
