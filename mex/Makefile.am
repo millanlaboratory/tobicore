@@ -1,4 +1,5 @@
 SUBDIRS = tobicoremat \
 		  mextobicore \
 		  mextobiic \
-		  mextobiid
+		  mextobiid \
+		  mextobiplatform
