@@ -38,7 +38,7 @@ $ #include <mex.h>
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
-% IDASCLIENT_NEW deletes an IDAsClient object
+% IDASCLIENT_DELETE deletes an IDAsClient object
 %
 % C = IDASCLIENT_DELETE(C) frees the instance of an IDAsClient object 
 % pointed by the handle C. 

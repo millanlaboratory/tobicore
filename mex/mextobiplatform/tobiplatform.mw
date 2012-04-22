@@ -26,14 +26,23 @@ $ #include <mex.h>
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
-% TODO
+% TPIC_NEW Allocates an TPiC object
+%
+% C = TPIC_NEW() returns the handle C to a new TPiC object.
+%
+% See also TPIC_DELETE
 	# TPiC* c = new TPiC();
 
 @function [c] = tpic_delete(c);
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
-% TODO
+% TPIC_DELETE deletes a TPiC object
+%
+% C = TPIC_DELETE(C) frees the instance of a TPiC object 
+% pointed by the handle C. 
+%
+% See also TPIC_NEW
 	# delete(TPiC* c);
 	c = 0;
 
@@ -41,7 +50,16 @@ $ #include <mex.h>
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
-% TODO
+% TPIC_PLUG plugs a TPiC object
+%
+% [RETVAL, C] = TPIC_PLUG(C, ADDR, PORT, ASCLIENT) plugs the TPiC handle C to a TOBI
+% iC server listening at ADDR:PORT. ASCLIENT is a boolean and indicates whether
+% the C object will be configured as client (for sending iC message) or as server 
+% (for receiving iC messages). 
+% RETVAL indicates the status of the connection (list of retvals and associated 
+% descriptions is provided by TP_RETVAL).
+%
+% See also TPIC_UNPLUG, TP_RETVAL
 	$ int tpic_plug(TPiC* c, char* addr, char* port, bool client) {
 	$	int retval = TPiD::Unsuccessful;
 	$ 	try {
@@ -61,7 +79,9 @@ $ #include <mex.h>
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
-% TODO
+% TPIC_UNPLUG unplugs a TPiC object
+%
+% See also TPIC_PLUG
 	$ void tpic_unplug(TPiC* c) {
 	$ 	try {
 	$		c->Unplug();
@@ -77,7 +97,14 @@ $ #include <mex.h>
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
-% TODO
+% TPIC_SET sets/sends an ICMESSAGE
+%
+% [RETVAL, C] = TPIC_SET(C, S) sends the content of an iC serializer object 
+% (pointed by the S handle) using a TPiC object (pointed by the C handle).
+% RETVAL indicates the status of the connection (list of retvals and associated 
+% descriptions is provided by TP_RETVAL).
+%
+% See also TPIC_GET, TP_RETVAL
 	$ int tpic_set(TPiC* c, ICSerializer* serializer) {
 	$	int retval = TPiD::Unsuccessful;
 	$ 	try {
@@ -95,7 +122,14 @@ $ #include <mex.h>
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
-% TODO
+% TPIC_GET gets/receives an ICMESSAGE
+%
+% [RETVAL, C] = TPIC_GET(C, S) receives an ICMessage in an iC serializer object 
+% (pointed by the S handle) using a TPiC object (pointed by the C handle).
+% RETVAL indicates the status of the connection (list of retvals and associated 
+% descriptions is provided by TP_RETVAL).
+%
+% See also TPIC_SET, TP_RETVAL
 	$ int tpic_get(TPiC* c, ICSerializer* serializer) {
 	$	int retval = TPiD::Unsuccessful;
 	$ 	try {
@@ -113,14 +147,23 @@ $ #include <mex.h>
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
-% TODO
+% TPID_NEW Allocates an TPiD object
+%
+% D = TPID_NEW() returns the handle D to a new TPiC object.
+%
+% See also TPID_DELETE
 	# TPiD* d = new TPiD();
 
 @function [d] = tpid_delete(d);
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
-% TODO
+% TPID_DELETE deletes a TPiD object
+%
+% D = TPID_DELETE(D) frees the instance of a TPiD object 
+% pointed by the handle D. 
+%
+% See also TPID_NEW 
 	# delete(TPiD* d);
 	d = 0;
 
@@ -128,7 +171,16 @@ $ #include <mex.h>
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
-% TODO
+% TPID_PLUG plugs a TPiD object
+%
+% [RETVAL, D] = TPIC_PLUG(D, ADDR, PORT, ASCLIENT) plugs the TPiD handle D to a TOBI
+% iD server listening at ADDR:PORT. ASCLIENT is a boolean and indicates whether
+% the D object will be configured as client (for sending iD message) or as server 
+% (for receiving iC messages, not supported). 
+% RETVAL indicates the status of the connection (list of retvals and associated 
+% descriptions is provided by TP_RETVAL).
+%
+% See also TPID_UNPLUG, TP_RETVAL
 	$ int tpid_plug(TPiD* d, char* addr, char* port, bool client) {
 	$	int retval = TPiD::Unsuccessful;
 	$ 	try {
@@ -148,7 +200,9 @@ $ #include <mex.h>
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
-% TODO
+% TPID_UNPLUG unplugs a TPiD object
+%
+% See also TPID_PLUG
 	$ void tpid_unplug(TPiD* d) {
 	$ 	try {
 	$		d->Unplug();
@@ -160,15 +214,25 @@ $ #include <mex.h>
 	$
 	# tpid_unplug(TPiD* d);
 
-@function [retval, c] = tpid_set(c, s);
+@function [retval, abidx, d] = tpid_set(d, s);
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
-% TODO
-	$ int tpid_set(TPiD* c, IDSerializer* serializer, int bidx, int* abidx) {
+% TPID_SET sets/sends an IDMESSAGE
+%
+% [RETVAL, ABIDX, D] = TPIC_SET(D, S, BIDX) sends the content of an iD serializer object 
+% (pointed by the S handle) using a TPiD object (pointed by the D handle).
+% BIDX is the current block index, while the returned ABIDX is the block index at
+% which the TOBI iD server received the iD message.
+% RETVAL indicates the status of the connection (list of retvals and associated 
+% descriptions is provided by TP_RETVAL).
+% 
+%
+% See also TPID_GET, TP_RETVAL
+	$ int tpid_set(TPiD* d, IDSerializer* serializer, int bidx, int* abidx) {
 	$	int retval = TPiD::Unsuccessful;
 	$ 	try {
-	$		c->Set(serializer, bidx, abidx);
+	$		d->Set(serializer, bidx, abidx);
 	$	} catch(TCException e) {
 	$		mexPrintf("[tpid_set] Exception in libtobiplatform: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
@@ -177,17 +241,24 @@ $ #include <mex.h>
 	$ } 
 	$
 	# int abidx = -1;
-	# int retval = tpid_set(TPiD* c, IDSerializer* s, int bidx, [inout] int* abidx);
+	# int retval = tpid_set(TPiD* d, IDSerializer* s, int bidx, [inout] int* abidx);
 
-@function [retval, c] = tpid_get(c, s);
+@function [retval, d] = tpid_get(d, s);
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
-% TODO
-	$ int tpid_get(TPiD* c, IDSerializer* serializer) {
+% TPID_GET gets/receives an iD message
+%
+% [RETVAL, D] = TPID_GET(D, S) receives an IDMessage in an iD serializer object 
+% (pointed by the S handle) using a TPiD object (pointed by the D handle).
+% RETVAL indicates the status of the connection (list of retvals and associated 
+% descriptions is provided by TP_RETVAL).
+%
+% See also TPID_SET, TP_RETVAL
+	$ int tpid_get(TPiD* d, IDSerializer* serializer) {
 	$	int retval = TPiD::Unsuccessful;
 	$ 	try {
-	$		c->Get(serializer);
+	$		d->Get(serializer);
 	$	} catch(TCException e) {
 	$		mexPrintf("[tpid_get] Exception in libtobiplatform: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
@@ -195,4 +266,16 @@ $ #include <mex.h>
 	$	return retval;
 	$ } 
 	$
-	# int retval = tpid_get(TPiD* c, IDSerializer* s);
+	# int retval = tpid_get(TPiD* d, IDSerializer* s);
+
+@function [value, desc] = tp_retval(name)
+% Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
+% Michele Tavella <michele.tavella@epfl.ch>
+%
+% TP_RETVAL Returns the supported TPIC and TPID return values
+%
+% [VALUE, DESC] = TP_RETVAL() returns the numerical values (VALUE) and the
+% associated descriptions (DESC) for all the supported TPIC and TPID retvals
+	value = [0 1 2 3 4 5 6 7 8];
+	desc = {'Unsuccessful', 'Successful', 'ErrorSocket', 'ErrorEndpoint', 'ErrorBound', 'ErrorGeneric', 'ErrorNotsupported', 'ErrorProtocol', 'ErrorTimeout'};
+
