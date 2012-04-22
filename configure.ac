@@ -97,5 +97,6 @@ AC_CONFIG_FILES([
  mex/tobicoremat/Makefile
  mex/mextobicore/Makefile
  mex/mextobiic/Makefile
- mex/mextobiid/Makefile])
+ mex/mextobiid/Makefile
+ mex/mextobiplatform/Makefile])
 AC_OUTPUT
