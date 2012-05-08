@@ -14,15 +14,15 @@
 %   You should have received a copy of the GNU General Public License
 %   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-$ #include <tobiid/IDSerializerRapid.hpp>
-$ #include <tobiic/ICSerializerRapid.hpp>
+>
 $ #include <tobicore/TCException.hpp>
 $ #include <tobiplatform/TPiC.hpp>
 $ #include <tobiplatform/TPiD.hpp>
 $ #include <cstring>
 $ #include <stdio.h>
 $ #include <mex.h>
-
+$ #include <tobiid/IDSerializerRapid.hpp>
+$ #include <tobiic/ICSerializerRapid.hpp>
 
 @function [c] = tpic_new();
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
