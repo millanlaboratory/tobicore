@@ -14,6 +14,8 @@
 %   You should have received a copy of the GNU General Public License
 %   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+$ #include <tobiid/IDSerializerRapid.hpp>
+$ #include <tobiic/ICSerializerRapid.hpp>
 $ #include <tobicore/TCException.hpp>
 $ #include <tobiplatform/TPiC.hpp>
 $ #include <tobiplatform/TPiD.hpp>
@@ -46,7 +48,7 @@ $ #include <mex.h>
 	# delete(TPiC* c);
 	c = 0;
 
-@function [retval, c] = tpic_plug(c, addr, port, asclient);
+@function [retval, c] = tpic_plug(c, addr, port, mode);
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
@@ -60,12 +62,12 @@ $ #include <mex.h>
 % descriptions is provided by TP_RETVAL).
 %
 % See also TPIC_UNPLUG, TP_RETVAL
-	$ int tpic_plug(TPiC* c, char* addr, char* port, bool client) {
+	$ int tpic_plug(TPiC* c, char* addr, char* port, int mode) {
 	$	int retval = TPiD::Unsuccessful;
 	$ 	try {
 	$ 		std::string sAddr(addr);
 	$ 		std::string sPort(port);
-	$		retval = c->Plug(sAddr, sPort, client);
+	$		retval = c->Plug(sAddr, sPort, mode);
 	$	} catch(TCException e) {
 	$		mexPrintf("[tpic_plug] Exception in libtobiplatform: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
@@ -73,7 +75,7 @@ $ #include <mex.h>
 	$	return retval;
 	$ } 
 	$
-	# int retval = tpic_plug(TPiC* c, cstring addr[64], cstring port[64], bool asclient);
+	# int retval = tpic_plug(TPiC* c, cstring addr[64], cstring port[64], int mode);
 
 @function [c] = tpic_unplug(c);
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
@@ -93,7 +95,7 @@ $ #include <mex.h>
 	$
 	# tpic_unplug(TPiC* c);
 
-@function [retval, c] = tpic_set(c, s);
+@function [retval, c] = tpic_setrapid(c, s);
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
@@ -105,20 +107,20 @@ $ #include <mex.h>
 % descriptions is provided by TP_RETVAL).
 %
 % See also TPIC_GET, TP_RETVAL
-	$ int tpic_set(TPiC* c, ICSerializer* serializer) {
+	$ int tpic_setrapid(TPiC* c, ICSerializerRapid* serializer) {
 	$	int retval = TPiD::Unsuccessful;
 	$ 	try {
-	$		c->Set(serializer);
+	$		retval = c->Set(serializer);
 	$	} catch(TCException e) {
-	$		mexPrintf("[tpic_set] Exception in libtobiplatform: %s, %s\n",
+	$		mexPrintf("[tpic_setrapid] Exception in libtobiplatform: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$	}
 	$	return retval;
 	$ } 
 	$
-	# int retval = tpic_set(TPiC* c, ICSerializer* s);
+	# int retval = tpic_setrapid(TPiC* c, ICSerializerRapid* s);
 
-@function [retval, c] = tpic_get(c, s);
+@function [retval, c] = tpic_getrapid(c, s);
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
@@ -130,18 +132,18 @@ $ #include <mex.h>
 % descriptions is provided by TP_RETVAL).
 %
 % See also TPIC_SET, TP_RETVAL
-	$ int tpic_get(TPiC* c, ICSerializer* serializer) {
+	$ int tpic_getrapid(TPiC* c, ICSerializerRapid* serializer) {
 	$	int retval = TPiD::Unsuccessful;
 	$ 	try {
-	$		c->Get(serializer);
+	$		retval = c->Get(serializer);
 	$	} catch(TCException e) {
-	$		mexPrintf("[tpic_get] Exception in libtobiplatform: %s, %s\n",
+	$		mexPrintf("[tpic_getrapid] Exception in libtobiplatform: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$	}
 	$	return retval;
 	$ } 
 	$
-	# int retval = tpic_get(TPiC* c, ICSerializer* s);
+	# int retval = tpic_getrapid(TPiC* c, ICSerializerRapid* s);
 
 @function [d] = tpid_new();
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
@@ -167,7 +169,7 @@ $ #include <mex.h>
 	# delete(TPiD* d);
 	d = 0;
 
-@function [retval, d] = tpid_plug(d, addr, port, asclient);
+@function [retval, d] = tpid_plug(d, addr, port, mode);
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
@@ -181,12 +183,12 @@ $ #include <mex.h>
 % descriptions is provided by TP_RETVAL).
 %
 % See also TPID_UNPLUG, TP_RETVAL
-	$ int tpid_plug(TPiD* d, char* addr, char* port, bool client) {
+	$ int tpid_plug(TPiD* d, char* addr, char* port, int mode) {
 	$	int retval = TPiD::Unsuccessful;
 	$ 	try {
 	$ 		std::string sAddr(addr);
 	$ 		std::string sPort(port);
-	$		retval = d->Plug(sAddr, sPort, client);
+	$		retval = d->Plug(sAddr, sPort, mode);
 	$	} catch(TCException e) {
 	$		mexPrintf("[tpid_plug] Exception in libtobiplatform: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
@@ -194,7 +196,7 @@ $ #include <mex.h>
 	$	return retval;
 	$ } 
 	$
-	# int retval = tpid_plug(TPiD* d, cstring addr[64], cstring port[64], bool asclient);
+	# int retval = tpid_plug(TPiD* d, cstring addr[64], cstring port[64], int mode);
 
 @function [d] = tpid_unplug(d);
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
@@ -214,7 +216,7 @@ $ #include <mex.h>
 	$
 	# tpid_unplug(TPiD* d);
 
-@function [retval, abidx, d] = tpid_set(d, s);
+@function [retval, abidx, d] = tpid_setrapid(d, s);
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
@@ -229,21 +231,21 @@ $ #include <mex.h>
 % 
 %
 % See also TPID_GET, TP_RETVAL
-	$ int tpid_set(TPiD* d, IDSerializer* serializer, int bidx, int* abidx) {
+	$ int tpid_setrapid(TPiD* d, IDSerializerRapid* serializer, int bidx, int* abidx) {
 	$	int retval = TPiD::Unsuccessful;
 	$ 	try {
-	$		d->Set(serializer, bidx, abidx);
+	$		retval = d->Set(serializer, bidx, abidx);
 	$	} catch(TCException e) {
-	$		mexPrintf("[tpid_set] Exception in libtobiplatform: %s, %s\n",
+	$		mexPrintf("[tpid_setrapid] Exception in libtobiplatform: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$	}
 	$	return retval;
 	$ } 
 	$
-	# int abidx = -1;
-	# int retval = tpid_set(TPiD* d, IDSerializer* s, int bidx, [inout] int* abidx);
+	abidx = -1;
+	# int retval = tpid_setrapid(TPiD* d, IDSerializerRapid* s, int bidx, [inout] int* abidx);
 
-@function [retval, d] = tpid_get(d, s);
+@function [retval, d] = tpid_getrapid(d, s);
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
 % Michele Tavella <michele.tavella@epfl.ch>
 %
@@ -255,18 +257,18 @@ $ #include <mex.h>
 % descriptions is provided by TP_RETVAL).
 %
 % See also TPID_SET, TP_RETVAL
-	$ int tpid_get(TPiD* d, IDSerializer* serializer) {
+	$ int tpid_getrapid(TPiD* d, IDSerializerRapid* serializer) {
 	$	int retval = TPiD::Unsuccessful;
 	$ 	try {
-	$		d->Get(serializer);
+	$		retval = d->Get(serializer);
 	$	} catch(TCException e) {
-	$		mexPrintf("[tpid_get] Exception in libtobiplatform: %s, %s\n",
+	$		mexPrintf("[tpid_getrapid] Exception in libtobiplatform: %s, %s\n",
 	$			e.GetCaller().c_str(), e.GetInfo().c_str());
 	$	}
 	$	return retval;
 	$ } 
 	$
-	# int retval = tpid_get(TPiD* d, IDSerializer* s);
+	# int retval = tpid_getrapid(TPiD* d, IDSerializerRapid* s);
 
 @function [value, desc] = tp_retval(name)
 % Copyright (C) 2009-2011  EPFL (Ecole Polytechnique Fédérale de Lausanne)
