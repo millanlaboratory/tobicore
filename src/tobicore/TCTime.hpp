@@ -30,6 +30,10 @@ struct timezone {
 	int tz_minuteswest;
 	int tz_dsttime;
 };
+struct timeval {
+	long tv_sec; 
+	long tv_usec;
+};
 int gettimeofday(struct timeval *tv, struct timezone *tz);
 #endif
 
