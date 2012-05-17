@@ -18,21 +18,13 @@
 */
 
 #include "TCTime.hpp"
-#undef _WIN32
 
-#ifdef __MINGW32__
-#undef _WIN32
-#endif //__MINGW32__
-
-#ifdef __MINGW32__
-#include <time.h>
+#ifdef WIN32
 #include <windows.h>
+#include <time.h>
 #endif
 
-#ifndef __MINGW32__
-#ifdef _WIN32
-#include <time.h>
-
+#if defined WIN32 || defined __MINGW32__ 
 int gettimeofday (struct timeval *tv, struct timezone *tz) {
 	FILETIME ft;
 	unsigned __int64 tmpres = 0;
@@ -63,26 +55,14 @@ int gettimeofday (struct timeval *tv, struct timezone *tz) {
  
 	return 0;
 }
-
-void timerclear(struct timeval *tvp) {
-	ZeroMemory(tvp, sizeof(timeval));
-}
-
-int timerisset(struct timeval *tvp) {
-	if (tvp->tv_sec || tvp->tv_usec)
-		return 1;
-	else
-		return 0;
-}
-#endif
 #endif
 
 void TCSleep(double ms) {
 	timeval tm;
 	tm.tv_sec = 0;
-	tm.tv_usec = (long)1000*ms;
-#ifdef __MINGW32__
-	Sleep(ms);
+	tm.tv_usec = 1000*(long)ms;
+#ifdef WIN32
+	Sleep((DWORD)ms);
 #else
 	select(0, 0, 0, 0, &tm);
 #endif

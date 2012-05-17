@@ -24,27 +24,15 @@
 extern "C" {
 #endif 
 
-#ifdef __MINGW32__
-#undef _WIN32
-#endif //__MINGW32__
-
-#ifndef _WIN32
-#include <sys/time.h>
-#else
+#ifdef WIN32
 #include <windows.h>
-struct timeval {
-	long tv_sec; 
-	long tv_usec;
-};
 struct timezone {
 	int tz_minuteswest;
 	int tz_dsttime;
 };
-
+	
 int gettimeofday (struct timeval *tv, struct timezone *tz);
-void timerclear(struct timeval *tvp);
-bool timerisset(struct timeval *tvp);
-#endif //_WIN32
+#endif
 
 /*! \brief Sleep milliseconds
  *
@@ -55,10 +43,10 @@ bool timerisset(struct timeval *tvp);
  *
  * \arg ms Amount of milliseconds to sleep for
  */
-void TCSleep(double ms);
+void __declspec(dllexport) TCSleep(double ms);
 
 #ifdef __cplusplus
 }
-#endif //__cplusplus
+#endif
 
-#endif //TCTIME_HPP
+#endif

@@ -23,9 +23,6 @@
 #include <cstdio>
 #include <sstream>
 
-#ifdef __BORLANDC__
-using namespace std;
-#endif
 
 char* TCTools::itoa(int value, char* result, int base) {
 	// check that the base if valid

@@ -19,6 +19,10 @@
 #ifndef TCEXCEPTION_HPP
 #define TCEXCEPTION_HPP
 
+#if defined WIN32
+#define __PRETTY_FUNCTION__ "TCTools.cpp"
+#endif
+
 #include <string>
 
 /*! \brief Exception class
