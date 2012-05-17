@@ -26,20 +26,22 @@ extern "C" {
 
 #ifdef WIN32
 #include <windows.h>
+#include <time.h>
 struct timezone {
 	int tz_minuteswest;
 	int tz_dsttime;
 };
+/*
 struct timeval {
 	long tv_sec; 
 	long tv_usec;
 };
+*/
 int gettimeofday(struct timeval *tv, struct timezone *tz);
-#endif
-
+#else
 void timerclear(struct timeval *tvp);
 int timerisset(struct timeval *tvp);
-
+#endif
 
 
 /*! \brief Sleep milliseconds
