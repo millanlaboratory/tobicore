@@ -22,6 +22,8 @@
 #ifdef WIN32
 #include <windows.h>
 #include <time.h>
+#else
+#include <sys/time.h>
 #endif
 
 #if defined WIN32 || defined __MINGW32__ 
@@ -56,6 +58,19 @@ int gettimeofday (struct timeval *tv, struct timezone *tz) {
 	return 0;
 }
 #endif
+
+/*
+void timerclear(struct timeval *tvp) {
+	ZeroMemory(tvp, sizeof(timeval));
+}
+
+int timerisset(struct timeval *tvp) {
+	if (tvp->tv_sec || tvp->tv_usec)
+		return 1;
+	else
+		return 0;
+}
+*/
 
 void TCSleep(double ms) {
 	timeval tm;

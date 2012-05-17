@@ -30,9 +30,13 @@ struct timezone {
 	int tz_minuteswest;
 	int tz_dsttime;
 };
-	
-int gettimeofday (struct timeval *tv, struct timezone *tz);
+int gettimeofday(struct timeval *tv, struct timezone *tz);
 #endif
+
+void timerclear(struct timeval *tvp);
+int timerisset(struct timeval *tvp);
+
+
 
 /*! \brief Sleep milliseconds
  *
@@ -43,7 +47,7 @@ int gettimeofday (struct timeval *tv, struct timezone *tz);
  *
  * \arg ms Amount of milliseconds to sleep for
  */
-void __declspec(dllexport) TCSleep(double ms);
+void TCSleep(double ms);
 
 #ifdef __cplusplus
 }
