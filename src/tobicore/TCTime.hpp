@@ -33,8 +33,8 @@ struct timezone {
 };
 int gettimeofday(struct timeval *tv, struct timezone *tz);
 #else
-void timerclear(struct timeval *tvp);
-int timerisset(struct timeval *tvp);
+//void timerclear(struct timeval *tvp);
+//int timerisset(struct timeval *tvp);
 #endif
 
 
