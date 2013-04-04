@@ -1,9 +1,32 @@
+tobicore (7.1.0+b2ubuntu1) precise; urgency=low
+
+  * Recompiled for Ubuntu 12.04
+
+ -- Tom Carlson <tcarlson@monet.epfl.ch>  Thu, 28 Mar 2013 16:37:45 +0100
+
+tobicore (7.1.0+b2) lucid; urgency=low
+
+  * Binary-only non-maintainer upload for amd64; no source changes.
+  * Updated for Ubuntu 12.04
+  * 
+
+ -- Tom Carlson <tom.carlson@epfl.ch>  Thu, 28 Mar 2013 14:04:46 +0100
+
+tobicore (7.1.0+b1) lucid; urgency=low
+
+  * Binary-only non-maintainer upload for amd64; no source changes.
+  * 
+
+ -- Tom Carlson <tom.carlson@epfl.ch>  Thu, 28 Mar 2013 13:48:47 +0100
+
 tobicore (7.1.0) lucid; urgency=low
 
+  [ Michele Tavella ]
   * Many fixes in mextobiplatorm
   * Added mextobiplatorm examples
 
- -- Michele Tavella <michele.tavella@epfl.ch>  Tue, 8 May 2012 21:16:00 +0200
+
+ -- Tom Carlson <tom.carlson@epfl.ch>  Thu, 28 Mar 2013 13:47:11 +0100
 
 tobicore (7.0.1) lucid; urgency=low
 
