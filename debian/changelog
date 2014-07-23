@@ -1,3 +1,9 @@
+tobicore (7.1.1) precise; urgency=low
+
+  * Ready for PPA
+
+ -- Michael Pereira <michael.pereira@epfl.ch>  Wed, 23 Jul 2014 11:27:05 +0200
+
 tobicore (7.1.0+b2ubuntu1) precise; urgency=low
 
   * Recompiled for Ubuntu 12.04
